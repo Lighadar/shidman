@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { Cinzel } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/layouts/Header"
+import { headers } from "next/headers"
 
 const cinzel = Cinzel({
-  weight: "400",
+  weight: ["400", "500"],
   subsets: ["latin"],
   display: "swap",
 })
@@ -20,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark h-full overflow-hidden">
-      <body className={cinzel.className}>
+    <html lang="en" className="dark">
+      <body className={cinzel.className + " min-h-screen flex flex-col"}>
         <Header />
         {children}
       </body>
