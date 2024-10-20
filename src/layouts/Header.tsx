@@ -21,7 +21,7 @@ export const Header = (props: Props) => {
     <div
       id="header"
       className={cn(
-        "z-10 relative flex justify-between pt-[30px] max-w-[95%] w-[1760px] mx-auto text-primary items-center",
+        "z-10 relative flex justify-between pt-[30px] lg:pt-3 max-w-[95%] w-[1760px] mx-auto text-primary items-center",
         {
           hidden: pathname == "/",
         }

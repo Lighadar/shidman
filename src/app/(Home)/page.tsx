@@ -5,7 +5,7 @@ import { HeroSection } from "./hero-section/HeroSection"
 import { cn } from "@/lib/utils"
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(3) // Tracks the current video index
+  const [currentStep, setCurrentStep] = useState(0) // Tracks the current video index
   const wolfVideoRef = useRef<HTMLVideoElement>(null)
   const earthVideoLandscapeRef = useRef<HTMLVideoElement>(null)
   const earthVideoPortraitRef = useRef<HTMLVideoElement>(null)

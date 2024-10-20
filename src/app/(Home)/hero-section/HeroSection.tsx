@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { cn } from "@/lib/utils"
 
 type Props = {}
 export const HeroSection = (props: Props) => {
@@ -23,6 +24,9 @@ export const HeroSection = (props: Props) => {
   const [isReversing, setIsReversing] = useState(false)
   const touchStartX = useRef<number | null>(null)
   const [api, setApi] = useState<CarouselApi | null>(null)
+  const [selectedScrollIndex, setSelectedScrollIndex] = useState<number | null>(
+    0
+  )
 
   const handleContentChange = (index: number) => {
     api?.scrollTo(index)
@@ -139,9 +143,31 @@ export const HeroSection = (props: Props) => {
     }
   }
 
+  const handelSlideClick = (index: number) => {
+    if (!api) return
+
+    if (index > api?.selectedScrollSnap()) {
+      handleNavigate("forward")
+    } else {
+      handleNavigate("backward")
+    }
+  }
+
+  const onScroll = () => {
+    if (!api) return
+
+    setSelectedScrollIndex(api?.selectedScrollSnap())
+  }
+
+  useEffect(() => {
+    if (api) {
+      api.on("scroll", onScroll)
+    }
+  }, [api])
+
   return (
     <div
-      className="w-full overflow-hidden grow"
+      className="w-full overflow-hidden grow pb-[65%] lg:pb-[25%] flex items-center"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
@@ -165,7 +191,7 @@ export const HeroSection = (props: Props) => {
           style={{ display: "none" }}
         />
       </div>
-      <div className="relative py-8 w-[700px] mx-auto">
+      <div className="relative py-8 w-[95%] lg:w-[50%] xl:w-[40%] mx-auto">
         <Carousel
           className="h-full items-center px-6"
           setApi={setApi}
@@ -188,12 +214,23 @@ export const HeroSection = (props: Props) => {
           >
             {Children.toArray(
               countries.map((data, index) => (
-                <CarouselItem className="flex grow items-center justify-center">
-                  <div className="flex flex-col items-center gap-4 lg:gap-10">
+                <CarouselItem
+                  className={cn(
+                    "flex blur-[4.25px] opacity-70 grow items-center justify-center translate-y-0 transition-all",
+                    {
+                      "blur-0 translate-y-0 opacity-100":
+                        selectedScrollIndex == index,
+                    }
+                  )}
+                  onClick={() => {
+                    handelSlideClick(index)
+                  }}
+                >
+                  <div className="flex flex-col items-center gap-4 2xl:gap-10 xl:gap-6">
                     <div className="text-foreground/50 tracking-[0.8rem] uppercase ml-[0.8rem]">
                       {data.region}
                     </div>
-                    <div className="flex gap-4 lg:gap-12 items-center flex-wrap justify-center">
+                    <div className="flex gap-4 lg:gap-x-12 lg:gap-y-4 items-center flex-wrap justify-center">
                       {Children.toArray(
                         data.companies.map((company) => (
                           <Image
@@ -201,12 +238,14 @@ export const HeroSection = (props: Props) => {
                             width={135}
                             height={50}
                             alt=""
-                            className="max-h-[44px] max-w-[100px] lg:max-h-[50px] lg:max-w-[110px]"
+                            className={cn(
+                              "max-h-[44px] max-w-[100px] opacity-70 lg:max-h-[35px] lg:max-w-[80px] xl:max-h-[40px] xl:max-w-[90px] 2xl:max-h-[50px] 2xl:max-w-[110px]"
+                            )}
                           />
                         ))
                       )}
                     </div>
-                    <div className="text-2xl lg:text-4xl text-foreground/70 uppercase">
+                    <div className="text-2xl xl:text-3xl 2xl:text-4xl text-foreground/70 uppercase">
                       {data.country}
                     </div>
                   </div>
@@ -214,7 +253,7 @@ export const HeroSection = (props: Props) => {
               ))
             )}
           </CarouselContent>
-          {currentCountryIndex !== 0 && (
+          {/* {currentCountryIndex !== 0 && (
             <div
               className="absolute top-[calc(100%+30px)] lg:flex blur-[4.25px] left-[9%] p-4 text-2xl flex flex-col items-center justify-center gap-1 cursor-pointer w-[170px] shrink-0 opacity-50 transition-all"
               onClick={() => handleNavigate("backward")}
@@ -231,7 +270,7 @@ export const HeroSection = (props: Props) => {
               <Image src="/logos/psi-logo.svg" width={150} height={60} alt="" />
               {countries[currentCountryIndex + 1].country}
             </div>
-          )}
+          )} */}
           {/* <CarouselPrevious />
           <CarouselNext /> */}
         </Carousel>

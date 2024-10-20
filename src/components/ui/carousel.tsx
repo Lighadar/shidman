@@ -77,6 +77,11 @@ const Carousel = React.forwardRef<
       setCanScrollNext(api.canScrollNext())
     }, [])
 
+    const onScroll = React.useCallback(() => {
+      // debugger
+      if (setApi) setApi(api)
+    }, [setApi, api])
+
     const scrollPrev = React.useCallback(() => {
       api?.scrollPrev()
     }, [api])
@@ -99,6 +104,7 @@ const Carousel = React.forwardRef<
     )
 
     React.useEffect(() => {
+      debugger
       if (!api || !setApi) {
         return
       }
@@ -114,6 +120,7 @@ const Carousel = React.forwardRef<
       onSelect(api)
       api.on("reInit", onSelect)
       api.on("select", onSelect)
+      api.on("scroll", onScroll)
 
       return () => {
         api?.off("select", onSelect)
