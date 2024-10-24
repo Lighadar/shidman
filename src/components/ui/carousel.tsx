@@ -78,7 +78,6 @@ const Carousel = React.forwardRef<
     }, [])
 
     const onScroll = React.useCallback(() => {
-      // debugger
       if (setApi) setApi(api)
     }, [setApi, api])
 
@@ -104,7 +103,6 @@ const Carousel = React.forwardRef<
     )
 
     React.useEffect(() => {
-      debugger
       if (!api || !setApi) {
         return
       }

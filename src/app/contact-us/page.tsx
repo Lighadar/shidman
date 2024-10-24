@@ -10,7 +10,7 @@ const ContactUs = (props: Props) => {
       <div className="absolute bg-[#101010] size-full z-[-1] bg-[url('/wolf.jpg')] bg-contain bg-no-repeat bg-center opacity-20"></div>
       <div className="grow flex flex-col px-4 py-10 space-y-6">
         <h1 className="text-4xl text-center">Contact Us</h1>
-        <div className="container mx-auto border border-white/50 rounded-lg px-14 py-7">
+        <div className="container mx-auto border border-white/50 rounded-lg p-8 lg:px-14 lg:py-7">
           <form action="" className="space-y-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               <div className="space-y-2">

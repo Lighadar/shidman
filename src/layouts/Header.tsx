@@ -44,7 +44,7 @@ export const Header = (props: Props) => {
         <div className="fixed top-0 left-0 size-full flex flex-col justify-between items-center text-white bg-black py-10 px-4">
           <ul className="text-center grow text-4xl flex flex-col justify-center items-center gap-10">
             <li>
-              <Link href="/" className="hover:text-primary">
+              <Link href="/?ready=true" className="hover:text-primary">
                 Home
               </Link>
             </li>

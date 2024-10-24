@@ -3,9 +3,15 @@
 import { useEffect, useRef, useState } from "react"
 import { HeroSection } from "./hero-section/HeroSection"
 import { cn } from "@/lib/utils"
+import { usePathname, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(0) // Tracks the current video index
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const ready = searchParams.get("ready")
+
+  const [currentStep, setCurrentStep] = useState(ready ? 3 : 0) // Tracks the current video index
   const wolfVideoRef = useRef<HTMLVideoElement>(null)
   const earthVideoLandscapeRef = useRef<HTMLVideoElement>(null)
   const earthVideoPortraitRef = useRef<HTMLVideoElement>(null)
@@ -39,6 +45,10 @@ export default function Home() {
     }
   }, [earthVideoPortraitRef.current, earthVideoLandscapeRef.current])
 
+  useEffect(() => {
+    router.push("/")
+  }, [])
+
   return (
     <div className="flex grow overflow-hidden">
       <div className="flex justify-center top-0 left-0 grow overflow-hidden">
@@ -70,7 +80,7 @@ export default function Home() {
 
         {currentStep === 1 && (
           <button
-            className="rounded-full border border-primary size-[180px] text-[27px] lg:size-[240px] lg:text-[32px] text-primary self-center"
+            className="rounded-full border border-primary size-[180px] text-[27px] xl:size-[240px] xl:text-[32px] text-primary self-center"
             onClick={() => {
               setCurrentStep(2)
             }}

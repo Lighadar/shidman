@@ -216,10 +216,9 @@ export const HeroSection = (props: Props) => {
               countries.map((data, index) => (
                 <CarouselItem
                   className={cn(
-                    "flex blur-[4.25px] opacity-70 grow items-center justify-center translate-y-0 transition-all",
+                    "flex blur-[4.25px] opacity-70 grow items-center justify-center transition-all",
                     {
-                      "blur-0 translate-y-0 opacity-100":
-                        selectedScrollIndex == index,
+                      "!blur-0 opacity-100": selectedScrollIndex == index,
                     }
                   )}
                   onClick={() => {
