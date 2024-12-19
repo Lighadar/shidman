@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "rsync -av -e 'ssh -i ~/ai-key/id_rsa -p 2201' --exclude='/.next' --exclude='/.next/**' --exclude='/node_modules' --exclude='node_modules/**' --exclude='.git' --exclude='/.git/**' --delete ./ root@195.201.11.178:/home/shidman"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",

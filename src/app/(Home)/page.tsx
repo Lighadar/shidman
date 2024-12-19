@@ -1,12 +1,20 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import { HeroSection } from "./hero-section/HeroSection"
 import { cn } from "@/lib/utils"
-import { usePathname, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 
-export default function Home() {
+export default function Page() {
+  return (
+    <Suspense>
+      <Home />
+    </Suspense>
+  )
+}
+
+const Home = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const ready = searchParams.get("ready")

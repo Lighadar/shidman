@@ -7,8 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
-type Props = {}
-export const Header = (props: Props) => {
+export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const pathname = usePathname()

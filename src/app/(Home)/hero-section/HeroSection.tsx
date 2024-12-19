@@ -8,29 +8,26 @@ import {
   CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"
 
-type Props = {}
-export const HeroSection = (props: Props) => {
+export const HeroSection = () => {
   const [navigationVideo, setNavigationVideo] =
     useState<HTMLVideoElement | null>(null)
   const navigationVideoMobileRef = useRef<HTMLVideoElement>(null)
   const navigationVideoDesktopRef = useRef<HTMLVideoElement>(null)
   const reverseInterval = useRef<NodeJS.Timeout | null>(null)
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0)
-  const [isReversing, setIsReversing] = useState(false)
+  const [_, setIsReversing] = useState(false)
   const touchStartX = useRef<number | null>(null)
   const [api, setApi] = useState<CarouselApi | null>(null)
   const [selectedScrollIndex, setSelectedScrollIndex] = useState<number | null>(
     0
   )
 
-  const handleContentChange = (index: number) => {
-    api?.scrollTo(index)
-  }
+  // const handleContentChange = (index: number) => {
+  //   api?.scrollTo(index)
+  // }
 
   useEffect(() => {
     if (document.body.clientWidth < 1000) {

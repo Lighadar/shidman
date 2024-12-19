@@ -3,8 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 
-type Props = {}
-const ContactUs = (props: Props) => {
+const ContactUs = () => {
   return (
     <>
       <div className="absolute bg-[#101010] size-full z-[-1] bg-[url('/wolf.jpg')] bg-contain bg-no-repeat bg-center opacity-20"></div>
