@@ -6,11 +6,10 @@ const AboutUs = () => {
         <div className="max-w-[948px] space-y-10">
           <h1 className="text-4xl">About us</h1>
           <p>
-            {`Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur illo
-        assumenda nobis fuga, doloremque consequatur placeat numquam deleniti
-        nisi voluptates!Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Tenetur illo assumenda nobis fuga, doloremque consequatur placeat
-        numquam deleniti nisi voluptates!`}
+            {`Shidman Holding is a dynamic and diversified enterprise at the forefront of innovation and excellence. With a strong presence across multiple industries, Shidman Holding leads a portfolio of exceptional companies that drive growth, inspire progress, and deliver unmatched value to clients and stakeholders worldwide.
+
+At Shidman Holding, we are committed to building a legacy of leadership and innovation. Our mission is to shape the future of industries by fostering creativity, nurturing talent, and creating opportunities that contribute to economic and social development.
+ `}
           </p>
         </div>
       </div>
